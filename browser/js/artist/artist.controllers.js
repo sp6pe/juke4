@@ -5,6 +5,7 @@
 juke.controller('ArtistsCtrl', function ($scope, $log, allArtists) {
 
   $scope.artists = allArtists;
+ //console.log( $scope.artistInput);
 
 });
 

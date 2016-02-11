@@ -18,12 +18,15 @@
     <script src="/js/artist/artist.factory.js" defer></script>
     <script src="/js/artist/artist.states.js" defer></script>
     <script src="/js/song/song.factory.js" defer></script>
+    <script src="/js/playlist/playlist.controller.js" defer></script>
+    <script src="/js/playlist/playlist.state.js" defer></script>
+    <script src="/js/playlist/playlist.factory.js" defer></script>
   </head>
   <body ng-app="juke">
     <div id="main" class="container-fluid">
 
       <div class="col-xs-2">
-        <sidebar ng-controller="SidebarCtrl">
+        <sidebar ng-controller="SidebarCtrl" >
           <img src="juke.svg" class="logo">
           <section>
             <h4 ui-sref-active="active" class="playlist-item active">
@@ -36,16 +39,23 @@
             </h4>
           </section>
           <hr>
-          <section>
+          <section ng-controller="PlayListsCtrl">
             <h4 class="text-muted">PLAYLISTS</h4>
+            
+            <ul>
+
+              <p class="playlist-item" ng-repeat="playList in playLists">
+              <a  ui-sref="playlist({playlistId: playList._id})" >{{ playList.name }}</a>
+            </p>
+            </ul>
             <p>
-              <a class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> PLAYLIST</a>
+              <a class="btn btn-primary btn-block" ui-sref="newplaylist"><span class="glyphicon glyphicon-plus"></span> PLAYLIST</a>
             </p>
           </section>
         </sidebar>
       </div>
 
-      <div class="col-xs-10">
+      <div class="col-xs-10" >
         <ui-view></ui-view>
       </div>
 
